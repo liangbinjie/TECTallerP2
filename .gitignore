@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# CodeRunner Temporal File
+tempCodeRunnerFile.py
+
+# Test Files
+database/clientes.txt
+prueba.txt
+progra2.txt
