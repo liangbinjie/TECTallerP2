@@ -132,6 +132,6 @@ dmypy.json
 tempCodeRunnerFile.py
 
 # Test Files
-database/clientes.txt
-prueba.txt
-progra2.txt
+*.txt
+*.zip
+*.docx
