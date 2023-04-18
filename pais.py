@@ -16,8 +16,17 @@ def getPais(cod):
     return False
 
 
-def deletePais():
-    pass
+def deletePais(pais):
+    if pais == False:
+        print("No existe este pais")
+        return False
+    with open(TABLA_PAISES, "r") as f:
+        lines = f.readlines()
+    with open(TABLA_PAISES, "w") as f:
+        for line in lines:
+            if line.strip("\n").split(";") != pais:
+                f.write(line)
+        print("Pais eliminado")
 
 def addPais():
     codPais = input("Ingrese el codigo del pais: ")
@@ -31,8 +40,31 @@ def addPais():
         nuevo = f'\n{codPais};{nombrePais}'
         f.write(nuevo)
 
-def modificarPais():
-    pass
+def modificarPais(pais):
+    if pais == False:
+        return False
+    
+    opcion = input("Que desea modificar?\n[1]ID\n[2]Nombre\n> ")
+    if opcion == "1":
+        idPais = input("Ingrese el nuevo id: ")
+        while paisExist(idPais) == True:
+            print("Este id ya existe, intente con otro")
+            idPais = input("Ingrese el nuevo id: ")
+    if opcion == "2":
+        nombre = input("Ingrese el nuevo nombre: ")
+    
+    with open(TABLA_PAISES, "r") as f:
+        lines = f.readlines()
+    with open(TABLA_PAISES, "w") as f:
+        for line in lines:
+            if line.strip("\n").split(';') != pais:
+                f.write(line)
+            if line.strip("\n").split(';') == pais:
+                if opcion == "1":
+                    f.write(f"{idPais};{pais[1]}\n")
+                if opcion == "2":
+                    f.write(f"{pais[0]};{nombre}\n")
+        print("Pais modificado")
 
 def paisExist(cod):
     for pais in getPaises():
