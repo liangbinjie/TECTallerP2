@@ -1,7 +1,11 @@
+from ciudad import ciudadExist
+from pais import paisExist
+from variables import TABLA_CLIENTES
+
 # Funcion para obtener la lista de clientes
 def getClientes():
     listaClientes = []
-    archivo = open('database/clientes.txt')
+    archivo = open(TABLA_CLIENTES)
     for linea in archivo.readlines():
         listaClientes.append(linea.replace("\n", "").split(';'))
 
@@ -26,7 +30,7 @@ def deleteCliente(cliente):
     if cliente == False:
         print("No existe este cliente")
         return False
-    with open("database/clientes.txt", "r") as f:
+    with open(TABLA_CLIENTES, "r") as f:
         lines = f.readlines()
     with open("prueba.txt", "w") as f:
         for line in lines:
@@ -43,9 +47,16 @@ def addCliente():
     idCliente = clienteExist() # verificar que no este repetido
     nombreCliente = input("Ingrese el nombre del cliente: ")
     direccion = input("Ingrese el direccion del cliente: ")
-    ciudad = input("Ingrese el ciudad del cliente: ") # verificar que la ciudad exista
+    pais = input("Ingrese el codigo del pais: ")
+    while paisExist(pais) == False:
+        print("Este pais no existe en la base de datos, intente con otro")
+        pais = input("Ingrese el codigo del pais: ")
+    ciudad = input("Ingrese el codigo de la ciudad: ")
+    while ciudadExist(ciudad) == False: # mientras que la ciudad no exista en la base de datos
+        print("Esta ciudad no existe en la base de datos, intente con otro")
+        ciudad = input("Ingrese el codigo de la ciudad: ")
     telefono = input("Ingrese el telefono del cliente: ")
-    fecha = input("Ingrese el dia de hoy: ")
+    fecha = fechaV()
     descuento = int(input("Ingrese el porcentaje de descuento para el cliente: "))
     saldo = int(input("Ingrese el saldo a deber del cliente: "))
     with open('prueba.txt', 'a') as f:
@@ -62,7 +73,7 @@ def modificarCliente(cliente):
     # que desea modificar?
     # supongamos que el nombre
     nombre = input("Ingrese el nombre nuevo: ")
-    with open("database/clientes.txt", "r") as f:
+    with open(TABLA_CLIENTES, "r") as f:
         lines = f.readlines()
     with open("prueba.txt", "w") as f:
         for line in lines:
@@ -89,3 +100,21 @@ def clienteExist():
 
     else:
         return idCliente
+    
+# funcion para retornar fecha de visita
+def fechaV():
+    ano = int(input("Ingrese el ano de hoy: "))
+    mes = int(input("Ingrese el mes de hoy: "))
+    while mes > 12 or mes <= 0:
+        print("Mes invalido, ingrese nuevamente")
+        mes = int(input("Ingrese el mes de hoy: "))
+    dia = int(input("Ingrese el dia de hoy: "))
+    if mes%2==1:
+        while dia > 31 or dia <= 0:
+            print("Dia invalido, ingrese nuevamente")
+            dia = int(input("Ingrese el dia de hoy: "))
+    else:
+        while dia > 30 or dia <= 0:
+            print("Dia invalido, ingrese nuevamente")
+            dia = int(input("Ingrese el dia de hoy: "))
+    return f'{dia};{mes};{ano}'
