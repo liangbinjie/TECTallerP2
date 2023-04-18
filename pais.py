@@ -1,5 +1,7 @@
+from variables import TABLA_PAISES
+
 def getPaises():
-    paises = open("database/paises.txt")
+    paises = open(TABLA_PAISES)
     listaPaises = []
     for linea in paises.readlines():
         listaPaises.append(linea.replace("\n", "").split(";"))
@@ -10,6 +12,7 @@ def getPais(cod):
     for pais in getPaises():
         if pais[0] == cod:
             return pais
+    print("No se encontro el pais")
     return False
 
 
@@ -17,7 +20,16 @@ def deletePais():
     pass
 
 def addPais():
-    print("Agregar pais")
+    codPais = input("Ingrese el codigo del pais: ")
+    if paisExist(codPais):
+        print("Este pais ya existe")
+        return "Codigo repetido"
+    nombrePais = input("Ingrese el nombre del pais: ")
+    # validar que el pais no este repetido
+    
+    with open(TABLA_PAISES, 'a') as f:
+        nuevo = f'\n{codPais};{nombrePais}'
+        f.write(nuevo)
 
 def modificarPais():
     pass
