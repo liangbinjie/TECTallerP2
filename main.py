@@ -1,6 +1,6 @@
 from os import system
 from insercion import menuInsercion
-
+from busqueda import menuBusqueda
 
 def main():
     system('cls')
@@ -16,9 +16,10 @@ def main():
             menuInsercion()
 
         elif respuesta == "2":
-            pass
+            system('cls')
+            menuBusqueda()
 
-        elif respuesta == "3":
+        elif respuesta == "Q":
             running = False
 
         else:
