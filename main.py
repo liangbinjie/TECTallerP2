@@ -1,6 +1,8 @@
 from os import system
 from insercion import menuInsercion
 from busqueda import menuBusqueda
+from modificar import menuModificar
+from eliminar import menuEliminar
 
 def main():
     system('cls')
@@ -18,6 +20,14 @@ def main():
         elif respuesta == "2":
             system('cls')
             menuBusqueda()
+
+        elif respuesta == "3":
+            system("cls")
+            menuEliminar()
+
+        elif respuesta == "4":
+            system("cls")
+            menuModificar()
 
         elif respuesta == "Q":
             running = False
