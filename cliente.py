@@ -47,19 +47,19 @@ def addCliente():
     idCliente = clienteExist() # verificar que no este repetido
     nombreCliente = input("Ingrese el nombre del cliente: ")
     direccion = input("Ingrese el direccion del cliente: ")
-    pais = input("Ingrese el codigo del pais: ")
+    pais = int(input("Ingrese el codigo del pais: "))
     while paisExist(pais) == False:
         print("Este pais no existe en la base de datos, intente con otro")
-        pais = input("Ingrese el codigo del pais: ")
-    ciudad = input("Ingrese el codigo de la ciudad: ")
+        pais = int(input("Ingrese el codigo del pais: "))
+    ciudad = int(input("Ingrese el codigo de la ciudad: "))
     while ciudadExist(ciudad) == False: # mientras que la ciudad no exista en la base de datos
         print("Esta ciudad no existe en la base de datos, intente con otro")
-        ciudad = input("Ingrese el codigo de la ciudad: ")
-    telefono = input("Ingrese el telefono del cliente: ")
+        ciudad = int(input("Ingrese el codigo de la ciudad: "))
+    telefono = int(input("Ingrese el telefono del cliente: "))
     fecha = fechaV()
     descuento = int(input("Ingrese el porcentaje de descuento para el cliente: "))
     saldo = int(input("Ingrese el saldo a deber del cliente: "))
-    with open('prueba.txt', 'a') as f:
+    with open(TABLA_CLIENTES, 'a') as f:
         nuevo = f'\n{idCliente};{nombreCliente};{direccion};{ciudad};{telefono};{fecha};{descuento};{saldo}'
         f.write(nuevo)
 # addCliente()
@@ -89,7 +89,7 @@ def modificarCliente(cliente):
 def clienteExist():
     encontrado = False
 
-    idCliente = input("Ingrese el id del cliente: ")
+    idCliente = int(input("Ingrese el id del cliente: "))
     for cliente in getClientes():
         if cliente[0] == idCliente:
             encontrado = True
