@@ -37,9 +37,9 @@ def addMascota():
     # cliente exista
     # id mascota no repetido
     # NumCliente;IdAnimal;Nombre;tipomascota;raza;fechanacimiento;sexo;color; castrado; fechaultimavisita
-    idCliente = getCliente(int(input("Ingrese el id del cliente: ")))
+    idCliente = getCliente(str(int(input("Ingrese el id del cliente: "))))
     while idCliente == False:
-        idCliente = getCliente(input("Ingrese el id del cliente: "))
+        idCliente = getCliente(str(int(input("Ingrese el id del cliente: "))))
     
     idAnimal = mascotaExist() # id no exista
     nombreAnimal = input("Ingrese el nombre del animal: ")
@@ -63,7 +63,7 @@ def modificarMascota():
 def mascotaExist():
     encontrado = False
 
-    idMascota = int(input("Ingrese el id de la mascota: "))
+    idMascota = str(int(input("Ingrese el id de la mascota: ")))
     for mascota in getMascotas():
         if mascota[1] == idMascota:
             encontrado = True

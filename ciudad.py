@@ -51,14 +51,14 @@ def deleteCiudad(ciudad):
 
 # Funcion para agregar una nueva ciudad
 def addCiudad():
-    codPais = int(input("Ingrese el codigo del pais: "))
+    codPais = str(int(input("Ingrese el codigo del pais: ")))
     while paisExist(codPais) == False: # mientras que el pais no exista
         print("Este pais no se encuentra en nuestra base de datos, ingrese otro")
-        codPais = int(input("Ingrese el codigo del pais: "))
-    codCiudad = int(input("Ingrese el codigo de la ciudad: "))
+        codPais = str(int(input("Ingrese el codigo del pais: ")))
+    codCiudad = str(int(input("Ingrese el codigo de la ciudad: ")))
     while ciudadExist(codCiudad) == True: # mientras que la ciudad exista en la base de datos
         print("Esta ciudad ya existe en la base de datos, intente con otro")
-        codCiudad = int(input("Ingrese el codigo de la ciudad: "))
+        codCiudad = str(int(input("Ingrese el codigo de la ciudad: ")))
     nombre = input("Ingrese el nombre de la ciudad: ")
 
     with open(TABLA_CIUDADES, 'a') as f: # agregamos el nuevo pais a la lista
@@ -74,8 +74,37 @@ def modificarCiudad(ciudad):
     if ciudad == False:
         return False
     
-    pass
-
+    opcion = input("Que desea modificar?\n[1]ID Pais\n[2]ID Ciudad\n[3]Nombre\n> ")
+    if opcion == "1":
+        idPais = str(int(input("Ingrese el nuevo id del pais: ")))
+        while paisExist(idPais) == False:
+            print("Este pais no existe, intente con otro")
+            idPais = str(int(input("Ingrese el nuevo id del pais: ")))
+    if opcion == "2":
+        idCiudad = str(int(input("Ingrese el nuevo id de la ciudad: ")))
+        while ciudadExist(idCiudad) == False:
+            print("Esta ciudad no existe, intenta con otro")
+            idCiudad = str(int(input("Ingrese el nuevo id de la ciudad: ")))
+    if opcion == "3":
+        nombre = input("Ingrese el nuevo nombre: ")
+    
+    else:
+        return "Opcion invalido"
+    
+    with open(TABLA_CIUDADES, "r") as f:
+        lines = f.readlines()
+    with open(TABLA_CIUDADES, "w") as f:
+        for line in lines:
+            if line.strip("\n").split(';') != ciudad:
+                f.write(line)
+            if line.strip("\n").split(';') == ciudad:
+                if opcion == "1":
+                    f.write(f"{idPais};{ciudad[1]};{ciudad[2]}\n")
+                if opcion == "2":
+                    f.write(f"{ciudad[0]};{idCiudad};{ciudad[2]}\n")
+                if opcion == "3":
+                    f.write(f"{ciudad[0]};{ciudad[1]};{nombre}\n")
+        print("Ciudad modificado")
 
 
 # Funcion para verificar que ciudad exista

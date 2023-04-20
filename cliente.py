@@ -47,18 +47,18 @@ def addCliente():
     idCliente = clienteExist() # verificar que no este repetido
     nombreCliente = input("Ingrese el nombre del cliente: ")
     direccion = input("Ingrese el direccion del cliente: ")
-    pais = int(input("Ingrese el codigo del pais: "))
+    pais = str(int(input("Ingrese el codigo del pais: ")))
     while paisExist(pais) == False:
         print("Este pais no existe en la base de datos, intente con otro")
-        pais = int(input("Ingrese el codigo del pais: "))
-    ciudad = int(input("Ingrese el codigo de la ciudad: "))
+        pais = str(int(input("Ingrese el codigo del pais: ")))
+    ciudad = str(int(input("Ingrese el codigo de la ciudad: ")))
     while ciudadExist(ciudad) == False: # mientras que la ciudad no exista en la base de datos
         print("Esta ciudad no existe en la base de datos, intente con otro")
-        ciudad = int(input("Ingrese el codigo de la ciudad: "))
-    telefono = int(input("Ingrese el telefono del cliente: "))
+        ciudad = str(int(input("Ingrese el codigo de la ciudad: ")))
+    telefono = str(int(input("Ingrese el telefono del cliente: ")))
     fecha = fechaV()
-    descuento = int(input("Ingrese el porcentaje de descuento para el cliente: "))
-    saldo = int(input("Ingrese el saldo a deber del cliente: "))
+    descuento = str(int(input("Ingrese el porcentaje de descuento para el cliente: ")))
+    saldo = str(int(input("Ingrese el saldo a deber del cliente: ")))
     with open(TABLA_CLIENTES, 'a') as f:
         nuevo = f'\n{idCliente};{nombreCliente};{direccion};{ciudad};{telefono};{fecha};{descuento};{saldo}'
         f.write(nuevo)
@@ -70,8 +70,7 @@ def modificarCliente(cliente):
     if cliente == False:
         return False
     
-    # que desea modificar?
-    # supongamos que el nombre
+    opcion = input("Que desea modificar?\n[1]ID\n[2]Nombre\n[3]Direccion\n[4]")
     nombre = input("Ingrese el nombre nuevo: ")
     with open(TABLA_CLIENTES, "r") as f:
         lines = f.readlines()
@@ -89,7 +88,7 @@ def modificarCliente(cliente):
 def clienteExist():
     encontrado = False
 
-    idCliente = int(input("Ingrese el id del cliente: "))
+    idCliente = str(int(input("Ingrese el id del cliente: ")))
     for cliente in getClientes():
         if cliente[0] == idCliente:
             encontrado = True

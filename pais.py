@@ -29,7 +29,7 @@ def deletePais(pais):
         print("Pais eliminado")
 
 def addPais():
-    codPais = int(input("Ingrese el codigo del pais: "))
+    codPais = str(int(input("Ingrese el codigo del pais: ")))
     if paisExist(codPais):
         print("Este pais ya existe")
         return "Codigo repetido"
@@ -46,10 +46,10 @@ def modificarPais(pais):
     
     opcion = input("Que desea modificar?\n[1]ID\n[2]Nombre\n> ")
     if opcion == "1":
-        idPais = int(input("Ingrese el nuevo id: "))
+        idPais = str(int(input("Ingrese el nuevo id: ")))
         while paisExist(idPais) == True:
             print("Este id ya existe, intente con otro")
-            idPais = int(input("Ingrese el nuevo id: "))
+            idPais = str(int(input("Ingrese el nuevo id: ")))
     if opcion == "2":
         nombre = input("Ingrese el nuevo nombre: ")
     
