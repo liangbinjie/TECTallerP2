@@ -40,28 +40,28 @@ def deleteCiudad(ciudad):
         
     with open(TABLA_CIUDADES, "r") as f:
         lines = f.readlines()
-    with open("prueba.txt", "w") as f:
+    with open(TABLA_CIUDADES, "w") as f:
         for line in lines:
             if line.strip("\n").split(';') != ciudad:
                 f.write(line)
-    print("Cliente eliminado")
+    print("Ciudad eliminado")
 #deleteCiudad(getCiudad("id"))
     
 
 
 # Funcion para agregar una nueva ciudad
 def addCiudad():
-    codPais = input("Ingrese el codigo del pais: ")
+    codPais = int(input("Ingrese el codigo del pais: "))
     while paisExist(codPais) == False: # mientras que el pais no exista
         print("Este pais no se encuentra en nuestra base de datos, ingrese otro")
-        codPais = input("Ingrese el codigo del pais: ")
-    codCiudad = input("Ingrese el codigo de la ciudad: ")
+        codPais = int(input("Ingrese el codigo del pais: "))
+    codCiudad = int(input("Ingrese el codigo de la ciudad: "))
     while ciudadExist(codCiudad) == True: # mientras que la ciudad exista en la base de datos
         print("Esta ciudad ya existe en la base de datos, intente con otro")
-        codCiudad = input("Ingrese el codigo de la ciudad: ")
+        codCiudad = int(input("Ingrese el codigo de la ciudad: "))
     nombre = input("Ingrese el nombre de la ciudad: ")
 
-    with open('prueba.txt', 'a') as f: # agregamos el nuevo pais a la lista
+    with open(TABLA_CIUDADES, 'a') as f: # agregamos el nuevo pais a la lista
         nuevo = f'\n{codPais};{codCiudad};{nombre}'
         f.write(nuevo)
 
