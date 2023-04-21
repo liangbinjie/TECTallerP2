@@ -1,20 +1,39 @@
-from variables import TABLA_PAISES
+from variables import TABLA_PAISES, LISTA_PAISES
 
-def getPaises():
-    paises = open(TABLA_PAISES)
-    listaPaises = []
-    for linea in paises.readlines():
-        listaPaises.append(linea.replace("\n", "").split(";"))
-    return listaPaises
+def cargarPaises():
+    archivo = open(TABLA_PAISES)
+    salida = []
+    for linea in archivo.readlines():
+        salida.append(linea.replace("\n", "").split(";"))
 
+    for pais in salida:
+        if pais not in LISTA_PAISES:
+            LISTA_PAISES.append(pais)
 
 def getPais(cod):
-    for pais in getPaises():
+    for pais in LISTA_PAISES:
         if pais[0] == cod:
             return pais
     print("No se encontro el pais")
     return False
 
+def addPais():
+    codPais = str(int(input("Ingrese el codigo del pais: ")))
+    if paisExist(codPais): # validar que el pais no este repetido
+        print("Este pais ya existe")
+        return "Codigo repetido"
+    nombrePais = input("Ingrese el nombre del pais: ")
+    
+    nuevo = [codPais, nombrePais]
+    LISTA_PAISES.append(nuevo)
+    print("Nuevo pais agregado")
+
+# funcion que retorna si un codigo de pais esta en la lista o no
+def paisExist(cod):
+    for pais in LISTA_PAISES:
+        if pais[0] == cod:
+            return True
+    return False
 
 def deletePais(pais):
     if pais == False:
@@ -28,17 +47,6 @@ def deletePais(pais):
                 f.write(line)
         print("Pais eliminado")
 
-def addPais():
-    codPais = str(int(input("Ingrese el codigo del pais: ")))
-    if paisExist(codPais):
-        print("Este pais ya existe")
-        return "Codigo repetido"
-    nombrePais = input("Ingrese el nombre del pais: ")
-    # validar que el pais no este repetido
-    
-    with open(TABLA_PAISES, 'a') as f:
-        nuevo = f'\n{codPais};{nombrePais}'
-        f.write(nuevo)
 
 def modificarPais(pais):
     if pais == False:
@@ -65,9 +73,3 @@ def modificarPais(pais):
                 if opcion == "2":
                     f.write(f"{pais[0]};{nombre}\n")
         print("Pais modificado")
-
-def paisExist(cod):
-    for pais in getPaises():
-        if pais[0] == cod:
-            return True
-    return False

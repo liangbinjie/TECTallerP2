@@ -3,12 +3,15 @@ from pais import getPais
 from ciudad import getCiudad
 from cliente import getCliente
 from mascota import getMascota
+# from visitas import getVisita
+# from tratamiento import getTratamientobuscar
+# from medicacion import getMed
 
 def menuBusqueda():
     running = True
 
     while running:
-        opcion = input("Has ingresado al modulo de busqueda, que deseas buscar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n> ")
+        opcion = input("Has ingresado al modulo de busqueda, que deseas buscar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Visitas\n[6]Tratamientos\n[7]Medicacion\n> ")
         if opcion == "1":
             pais = getPais(input("Ingrese el codigo de pais: "))
             if pais != False:
@@ -45,6 +48,25 @@ def menuBusqueda():
                       f"Color de mascota: {mascota[9]}\n"+
                       f"Castrado: {mascota[10]}\n"+
                       f"Fecha ultima visita: {mascota[11]}-{mascota[12]}-{mascota[13]}\n")
+        elif opcion == "5":
+            visita = getVisita()
+            if visita != False:
+                print("ID Visita:", visita[0])
+                print("ID Animal:", visita[1])
+                print(f"Fecha ultima visita: {visita[2]}-{visita[3]}-{visita[4]}")
+                print(f"Total factura {visita[5]}")
+                print("Forma de pago:", visita[6])
+        elif opcion == "6":
+            tratamiento = getTratamientobuscar()
+            if tratamiento != False:
+                print("ID:", tratamiento[0])
+                print("Nombre:", tratamiento[1])
+                print("Precio unitario:", tratamiento[2])
+
+        elif opcion == "7":
+            medicacion = getMed()
+            if medicacion != False:
+                print("Ultima medicacion:",medicacion)
 
         elif opcion == "Q":
             running = False

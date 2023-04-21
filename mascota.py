@@ -1,19 +1,20 @@
 from cliente import getCliente
-from variables import TABLA_MASCOTAS
+from variables import TABLA_MASCOTAS, LISTA_MASCOTAS, fechaV
 
-def getMascotas():
+def cargarMascotas():
     listaMascotas = []
     archivo = open(TABLA_MASCOTAS)
     for linea in archivo.readlines():
         listaMascotas.append(linea.replace("\n", "").split(';'))
 
-    # print(listaMascotas)
-    return listaMascotas
+    for mascota in listaMascotas:
+        if mascota not in LISTA_MASCOTAS:
+            LISTA_MASCOTAS.append(mascota)
 
 
 # Funcion para buscar una mascota por id
 def getMascota(idMascota):
-    for mascota in getMascotas():
+    for mascota in LISTA_MASCOTAS:
         if mascota[1] == idMascota:
             return mascota
     print("No se encontro la mascota")
@@ -24,7 +25,7 @@ def getMascota(idMascota):
 # Funcion para obtener las mascotas asociadas al cliente
 def getMascotasCliente(idCliente):
     mascotasCliente = []
-    for mascota in getMascotas():
+    for mascota in LISTA_MASCOTAS:
         if mascota[1] == idCliente:
             mascotasCliente.append(mascota)
 
@@ -50,9 +51,8 @@ def addMascota():
     color = input("Ingrese el color de la mascota: ")
     castrado = input("Ingrese si esta castrado (si/no): ")
     fechaUltimaVisita = fechaV()
-    with open(TABLA_MASCOTAS, 'a') as f:
-        nuevo = f'\n{idCliente};{idAnimal};{nombreAnimal};{tipoMascota};{raza};{fechaN};{sexo};{color};{castrado};{fechaUltimaVisita}'
-        f.write(nuevo)
+    nuevo = [idCliente[0], idAnimal, nombreAnimal, tipoMascota, raza] + fechaN + [sexo,color, castrado] + fechaUltimaVisita
+    LISTA_MASCOTAS.append(nuevo)
     print("Mascota agregada")
 
 
@@ -64,7 +64,7 @@ def mascotaExist():
     encontrado = False
 
     idMascota = str(int(input("Ingrese el id de la mascota: ")))
-    for mascota in getMascotas():
+    for mascota in LISTA_MASCOTAS:
         if mascota[1] == idMascota:
             encontrado = True
     
@@ -90,22 +90,4 @@ def fechaNacimiento():
         while dia > 30 or dia <= 0:
             print("Dia invalido, ingrese nuevamente")
             dia = int(input("Ingrese el dia de nacimiento: "))
-    return f'{dia};{mes};{ano}'
-
-def fechaV():
-    ano = int(input("Ingrese el ano de hoy: "))
-    mes = int(input("Ingrese el mes de hoy: "))
-    while mes > 12 or mes <= 0:
-        print("Mes invalido, ingrese nuevamente")
-        mes = int(input("Ingrese el mes de hoy: "))
-    dia = int(input("Ingrese el dia de hoy: "))
-    if mes%2==1:
-        while dia > 31 or dia <= 0:
-            print("Dia invalido, ingrese nuevamente")
-            dia = int(input("Ingrese el dia de hoy: "))
-    else:
-        while dia > 30 or dia <= 0:
-            print("Dia invalido, ingrese nuevamente")
-            dia = int(input("Ingrese el dia de hoy: "))
-    return f'{dia};{mes};{ano}'
-# addMascota()
+    return [dia,mes,ano]
