@@ -3,9 +3,9 @@ from pais import getPais
 from ciudad import getCiudad
 from cliente import getCliente
 from mascota import getMascota
-# from visitas import getVisita
-# from tratamiento import getTratamientobuscar
-# from medicacion import getMed
+from visitas import getVisitas
+from tratamiento import getTratamientos
+from medicacion import getMed
 
 def menuBusqueda():
     running = True
@@ -49,7 +49,7 @@ def menuBusqueda():
                       f"Castrado: {mascota[10]}\n"+
                       f"Fecha ultima visita: {mascota[11]}-{mascota[12]}-{mascota[13]}\n")
         elif opcion == "5":
-            visita = getVisita()
+            visita = getVisitas()
             if visita != False:
                 print("ID Visita:", visita[0])
                 print("ID Animal:", visita[1])
@@ -57,7 +57,7 @@ def menuBusqueda():
                 print(f"Total factura {visita[5]}")
                 print("Forma de pago:", visita[6])
         elif opcion == "6":
-            tratamiento = getTratamientobuscar()
+            tratamiento = getTratamientos()
             if tratamiento != False:
                 print("ID:", tratamiento[0])
                 print("Nombre:", tratamiento[1])
@@ -66,7 +66,7 @@ def menuBusqueda():
         elif opcion == "7":
             medicacion = getMed()
             if medicacion != False:
-                print("Ultima medicacion:",medicacion)
+                print("Ultima medicacion:",medicacion[5])
 
         elif opcion == "Q":
             running = False

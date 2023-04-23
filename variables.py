@@ -3,13 +3,16 @@ TABLA_CLIENTES = "database/Clientes.txt"
 TABLA_PAISES = "database/Paises.txt"
 TABLA_MASCOTAS = "database/Mascotas.txt"
 TABLA_VISITAS = "database/Visitas.txt"
-TABLA_TRATAMIENTOS = "database/Tratamientos.txt"
+TABLA_TRATAMIENTOS = "database/Tratamiento.txt"
 TABLA_MEDICACION = "database/Medicacion.txt"
 
 LISTA_PAISES = []
 LISTA_CIUDADES = []
 LISTA_CLIENTES = []
 LISTA_MASCOTAS = []
+LISTA_VISITAS = []
+LISTA_TRATAMIENTOS = []
+LISTA_MEDICACION = []
 
 # funcion para retornar fecha de visita
 def fechaV():

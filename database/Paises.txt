@@ -1,0 +1,4 @@
+12;Costa Rica
+23;Estados Unidos
+45;Panama
+12;Nicaragua

@@ -3,9 +3,9 @@ from pais import addPais
 from ciudad import addCiudad
 from cliente import addCliente
 from mascota import addMascota
-# from visitas import addVisita
-# from tratamiento import addTratamientos
-# from medicacion import addMedicacion
+from visitas import addVisita
+from tratamiento import addTratamientos
+from medicacion import addMedicacion
 def menuInsercion():
     running = True
 

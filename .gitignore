@@ -132,6 +132,8 @@ dmypy.json
 tempCodeRunnerFile.py
 
 # Test Files
-*.txt
+planPruebas.txt
+notas.txt
+Progra2.txt
 *.zip
 *.docx

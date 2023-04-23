@@ -20,7 +20,12 @@ def getMascota(idMascota):
     print("No se encontro la mascota")
     return False
 # getCliente("id", getMascotas())
-
+def getMascotavisita(idMascota):
+    for mascota in LISTA_MASCOTAS:
+        if mascota[1] == idMascota:
+            return idMascota
+    print("No se encontro la mascota")
+    return False
 
 # Funcion para obtener las mascotas asociadas al cliente
 def getMascotasCliente(idCliente):
@@ -51,10 +56,12 @@ def addMascota():
     color = input("Ingrese el color de la mascota: ")
     castrado = input("Ingrese si esta castrado (si/no): ")
     fechaUltimaVisita = fechaV()
+    # if fechaN[0] <= fechaUltimaVisita[0] and fechaN[1] <= fechaUltimaVisita[1]:
     nuevo = [idCliente[0], idAnimal, nombreAnimal, tipoMascota, raza] + fechaN + [sexo,color, castrado] + fechaUltimaVisita
     LISTA_MASCOTAS.append(nuevo)
     print("Mascota agregada")
-
+    # else:
+    #     print("Fecha ultima visita no es posterior a la fecha de nacimiento")
 
 
 def modificarMascota():

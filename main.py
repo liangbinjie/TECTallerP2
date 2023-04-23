@@ -5,6 +5,10 @@ from pais import cargarPaises
 from ciudad import cargarCiudad
 from cliente import cargarClientes
 from mascota import cargarMascotas
+from visitas import cargarVisitas
+from tratamiento import cargarTratamientos
+from medicacion import cargarMed
+
 # from modificar import menuModificar
 # from eliminar import menuEliminar
 
@@ -12,6 +16,9 @@ cargarPaises()
 cargarCiudad()
 cargarClientes()
 cargarMascotas()
+cargarVisitas()
+cargarTratamientos()
+cargarMed()
 
 def main():
     system('cls')
