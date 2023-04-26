@@ -1,4 +1,4 @@
-from variables import TABLA_PAISES, LISTA_PAISES
+from variables import TABLA_PAISES, LISTA_PAISES, LISTA_CIUDADES
 
 def cargarPaises():
     archivo = open(TABLA_PAISES)
@@ -39,37 +39,27 @@ def deletePais(pais):
     if pais == False:
         print("No existe este pais")
         return False
-    with open(TABLA_PAISES, "r") as f:
-        lines = f.readlines()
-    with open(TABLA_PAISES, "w") as f:
-        for line in lines:
-            if line.strip("\n").split(";") != pais:
-                f.write(line)
-        print("Pais eliminado")
+    
+    for paises in LISTA_PAISES:
+        if paises[0] == pais[0]:
+            LISTA_PAISES.remove(paises)
+    
+    for ciudades in LISTA_CIUDADES:
+        if ciudades[0] == pais[0]:
+            LISTA_CIUDADES.remove(ciudades)
+
+    print("Datos relacionados al pais eliminados")
 
 
 def modificarPais(pais):
     if pais == False:
         return False
     
-    opcion = input("Que desea modificar?\n[1]ID\n[2]Nombre\n> ")
-    if opcion == "1":
-        idPais = str(int(input("Ingrese el nuevo id: ")))
-        while paisExist(idPais) == True:
-            print("Este id ya existe, intente con otro")
-            idPais = str(int(input("Ingrese el nuevo id: ")))
-    if opcion == "2":
-        nombre = input("Ingrese el nuevo nombre: ")
+    nombre = input("Ingrese el nombre nuevo que deseas modificar para\n"+
+                   f"{pais[0]}: {pais[1]}\n> ")
+            
+    for paises in LISTA_PAISES:
+        if paises[0] == pais[0]:
+            paises[1] = nombre
     
-    with open(TABLA_PAISES, "r") as f:
-        lines = f.readlines()
-    with open(TABLA_PAISES, "w") as f:
-        for line in lines:
-            if line.strip("\n").split(';') != pais:
-                f.write(line)
-            if line.strip("\n").split(';') == pais:
-                if opcion == "1":
-                    f.write(f"{idPais};{pais[1]}\n")
-                if opcion == "2":
-                    f.write(f"{pais[0]};{nombre}\n")
-        print("Pais modificado")
+    print("Nombre de pais modificado")

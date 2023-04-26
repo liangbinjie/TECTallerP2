@@ -45,7 +45,14 @@ def getMascotasCliente(idCliente):
     return mascotasCliente
 
 def deleteMascota():
-    pass
+    mascota = input("Ingrese el id de la mascota: ")
+
+    for mascotas in LISTA_MASCOTAS:
+        if mascotas[0] == 1 and mascotas[2] == mascota:
+            print("Esta mascota ya esta eliminada")
+        elif mascotas[1] == mascota and mascotas[0] != 1:
+            mascotas = mascotas.insert(0, 1)
+            print("Mascota eliminada")
 
 def addMascota():
     # cliente exista
@@ -72,8 +79,17 @@ def addMascota():
     #     print("Fecha ultima visita no es posterior a la fecha de nacimiento")
 
 
-def modificarMascota():
-    pass
+def modificarMascota(mascota):
+    if mascota == False:
+        return False
+    
+    for mascotas in LISTA_MASCOTAS:
+        if mascotas[1] == mascota[1]:
+            nombre = input("Ingrese el nuevo nombre de la mascota: ")
+            castrado = input("Ingrese si esta castrado (si/no): ")
+            mascotas[2] = nombre
+            mascotas[10] = castrado
+    print("Mascota modificada")
 
 def mascotaExist():
     encontrado = False
@@ -106,3 +122,9 @@ def fechaNacimiento():
             print("Dia invalido, ingrese nuevamente")
             dia = int(input("Ingrese el dia de nacimiento: "))
     return [dia,mes,ano]
+
+
+def verMascotasEliminadas():
+    for mascota in LISTA_MASCOTAS:
+        if mascota[0] == "1":
+            print(mascota)

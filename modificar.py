@@ -1,5 +1,6 @@
 from mascota import addMascota
 from pais import modificarPais, getPais
+from ciudad import modificarCiudad, getCiudad
 from visitas import Modvisita
 from os import system
 from tratamiento import modTratamientos
@@ -14,8 +15,8 @@ def menuModificar():
             idPais = input("Ingrese el id del pais: ")
             modificarPais(getPais(idPais))
         elif opcion == "2":
-            pass
-            # modificarCiudad()
+            idCiudad = input("Ingrese el id de la ciudad: ")
+            modificarCiudad(getCiudad(idCiudad))
         elif opcion == "3":
             pass
             # addCliente()

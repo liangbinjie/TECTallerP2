@@ -1,6 +1,9 @@
 from pais import deletePais, getPais
 from os import system
 from medicacion import eliminaMed
+from cliente import verClientesEliminados, deleteCliente, getCliente
+from mascota import deleteMascota, getMascota
+
 
 def menuEliminar():
     running = True
@@ -14,11 +17,11 @@ def menuEliminar():
             pass
             # modificarCiudad()
         elif opcion == "3":
-            pass
-            # addCliente()
+            deleteCliente(getCliente(input("Ingrese el id del cliente a eliminar: ")))
+            verClientesEliminados()
+            input()
         elif opcion == "4":
-            pass
-            # addMascota()
+            deleteMascota()
         elif opcion == "5":
             eliminaMed()
         elif opcion == "Q":

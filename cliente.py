@@ -1,6 +1,6 @@
 from ciudad import ciudadExist, getCiudad
 from pais import paisExist
-from variables import TABLA_CLIENTES, LISTA_CLIENTES, fechaV
+from variables import TABLA_CLIENTES, LISTA_CLIENTES, fechaV, LISTA_MASCOTAS
 
 # Funcion para obtener la lista de clientes apartir del txt
 def cargarClientes():
@@ -18,7 +18,6 @@ def cargarClientes():
 def getCliente(idCliente):
     for cliente in LISTA_CLIENTES:
         if cliente[0] == idCliente:
-            # print(cliente)
             return cliente
     print("No se encontro el cliente")
     return False
@@ -67,12 +66,16 @@ def deleteCliente(cliente):
     if cliente == False:
         print("No existe este cliente")
         return False
-    with open(TABLA_CLIENTES, "r") as f:
-        lines = f.readlines()
-    with open("prueba.txt", "w") as f:
-        for line in lines:
-            if line.strip("\n").split(';') != cliente:
-                f.write(line)
+    
+    for clientes in LISTA_CLIENTES:
+        if clientes[0] == cliente[0]:
+            clientes = clientes.insert(0, 1)
+    
+    for mascotas in LISTA_MASCOTAS:
+        if mascotas[0] == cliente[1]:
+            mascotas = mascotas.insert(0, 1)
+
+
     print("Cliente eliminado")
 # deleteCliente(getCliente("id"))
 
@@ -83,15 +86,43 @@ def modificarCliente(cliente):
     if cliente == False:
         return False
     
-    opcion = input("Que desea modificar?\n[1]ID\n[2]Nombre\n[3]Direccion\n[4]")
-    nombre = input("Ingrese el nombre nuevo: ")
-    with open(TABLA_CLIENTES, "r") as f:
-        lines = f.readlines()
-    with open("prueba.txt", "w") as f:
-        for line in lines:
-            if line.strip("\n").split(';') != cliente:
-                f.write(line)
-            if line.strip("\n").split(';') == cliente:
-                f.write(f'3;{nombre};11;23;230323;0%;0\n')
-    print("Cliente modificado")
+    opcion = input("Que desea modificar?\n[1]Nombre\n[2]Direccion\n[3]CodPais y CodCiudad\n[4]Telefono\n> ")
+    for clientes in LISTA_CLIENTES:
+        if clientes[0] == cliente[0]:
+            if opcion == "1":
+                nombre = input("Ingrese el nombre nuevo del cliente: ")
+                clientes[1] = nombre
+            elif opcion == "2":
+                direccion = input("Ingrese la direccion nueva del cliente: ")
+                clientes[2] = direccion
+            elif opcion == "3":
+                pais = str(int(input("Ingrese el codigo nuevo del pais: ")))
+                while paisExist(pais) == False:
+                    print("Este pais no existe en la base de datos, intente con otro")
+                    pais = str(int(input("Ingrese el codigo nuevo del pais: ")))
+                ciudad = str(int(input("Ingrese el codigo nuevo de la ciudad: ")))
+                infoCiudad = getCiudad(ciudad)
+                while ciudadExist(ciudad) == False or not infoCiudad[0] == pais: # mientras que la ciudad no exista en la base de datos
+                    print("Esta ciudad no existe en la base de datos, o no pertenece a su respectivo pais")
+                    ciudad = str(int(input("Ingrese el codigo nuevo de la ciudad: ")))
+                    infoCiudad = getCiudad(ciudad)
+                clientes[3] = pais
+                clientes[4] = ciudad
+            elif opcion == "4":
+                telefono = str(int(input("Ingrese el numero de telefono nuevo que va a modificar: ")))
+                clientes[5] = telefono
+    
+    seguir = input("Desea seguir modificando?\n[1]Si\n[2]Salir")
+    if seguir == "1":
+        modificarCliente(cliente)
+    else:
+        print("Cliente modificado")
+            
 # modificarCliente(getCliente("id", getClientes()))
+
+def verClientesEliminados():
+    for clientes in LISTA_CLIENTES:
+        # if clientes[0] == 1:
+        print(clientes)
+    for mascotas in LISTA_MASCOTAS:
+        print(mascotas)
