@@ -1,1 +1,0 @@
-ID: 123435 | Nombre: Pedro Solis | Direccion: Las Palmeritas | Pais: 45 | Ciudad: 123 | Telefono: 3456 | Fecha: 27-05-23 | Descuento: 5 | Saldo: 4556ID: 12345 | Nombre: Maria | Direccion: Las Cotorras | Pais: 12 | Ciudad: 123 | Telefono: 45678 | Fecha: 23-04-23 | Descuento: 3 | Saldo: 0
