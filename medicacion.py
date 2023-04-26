@@ -1,5 +1,6 @@
+
 from variables import TABLA_MEDICACION,LISTA_MEDICACION,fechaV
-from mascota import getMascota
+from mascota import getMascotavisitamod,getMascota
 from tratamiento import getTratamientos
 
 def cargarMed():
@@ -14,7 +15,7 @@ def cargarMed():
 
 def Medexist(cod):
     for linea in LISTA_MEDICACION:
-        if linea[0] == cod:
+        if linea[1] == cod:
             return True
     else:
         return False
@@ -51,6 +52,13 @@ def getMedicacion(codMedicacion):
     print("No se encontro la medicacion")
     return False
 
+def getMedicacionTrue(codMedicacion):
+    for medicacion in LISTA_MEDICACION:
+        if medicacion[1] == codMedicacion:
+            return True
+    print("No se encontro la medicacion")
+    return False
+
 def getMedicacionMascota(idMascota):
     for medicacion in LISTA_MEDICACION:
         if medicacion[0] == idMascota:
@@ -82,4 +90,45 @@ def addMedicacion():
     nuevo = [idAnimal, codMedicacion] + fecha + [tratamiento, costoUnitario, cantidad, total]
     LISTA_MEDICACION.append(nuevo)
 
-    
+def medicamentoi(cod):
+    i=0
+    while i<len(LISTA_MEDICACION):
+        if LISTA_MEDICACION[i][1]==cod:
+            return i
+        i=i+1
+    return i 
+
+def eliminaMed():
+    codmed = input("Ingrese el codigo de la medicacion que desea borrar:")
+    if Medexist(codmed)==True:
+        i=medicamentoi(codmed)
+        LISTA_MEDICACION.remove(LISTA_MEDICACION[i])
+
+        print(LISTA_MEDICACION)
+    else:
+        print("Codigo de medicacion no existe, ingrese la informacion de nuevo")
+        eliminaMed()
+
+
+def modMedicamento():
+    codmed = input("Ingrese el codigo de la medicacion:")
+    if Medexist(codmed)==True:
+        codanim = input("Ingrese el ID del animal:")
+        if getMascotavisitamod(codanim) == True:
+            nom = input("Ingrese el nuevo nombre del medicamento:")
+            cant = input("Ingrese la cantidad nueva del medicamento:")
+            precio = input("Ingrese el precio nuevo del medicamento:")
+            precio=int(precio)
+            cant=int(cant)
+            preciototal=1
+            preciototal=preciototal*precio*cant
+            i=medicamentoi(codmed)
+            LISTA_MEDICACION[i]=LISTA_MEDICACION[i][:5]
+            LISTA_MEDICACION[i]=LISTA_MEDICACION[i]+[nom,precio,cant,preciototal]
+            print(LISTA_MEDICACION)
+        else:
+            print("ID de animal no valido, ingrese la informacion de nuevo:")
+            modMedicamento()
+    else:
+        print("Codigo de medicacion no valido, ingrese la informacion de nuevo:")
+        modMedicamento()
