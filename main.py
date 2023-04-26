@@ -10,6 +10,7 @@ from tratamiento import cargarTratamientos
 from medicacion import cargarMed
 from modificar import menuModificar
 from eliminar import menuEliminar
+from reportes import menuReportes
 
 cargarPaises()
 cargarCiudad()
@@ -43,6 +44,10 @@ def main():
         elif respuesta == "4":
             system("cls")
             menuModificar()
+
+        elif respuesta == "5":
+            system("cls")
+            menuReportes()
 
         elif respuesta == "Q":
             running = False

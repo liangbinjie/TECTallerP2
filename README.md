@@ -1,4 +1,4 @@
-# TECTallerP2
+# TECTallerP2 TECNOPETS
 
 Proyecto 2 TEC Taller IC1803
 
