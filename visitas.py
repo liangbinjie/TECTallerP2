@@ -1,6 +1,6 @@
 
 from variables import TABLA_VISITAS,LISTA_VISITAS,fechaV, LISTA_MASCOTAS, LISTA_CLIENTES
-from mascota import getMascotavisita
+from mascota import getMascotavisita,getMascotavisitamod
 
 def getVisitas():
     cod = input("Ingrese el ID de visita")
@@ -64,8 +64,45 @@ def visitexist():
     else:
         return cod 
 
-num = 12
-if 1 < num < 15:
-    print('Num')
-else:
-    print("idk")
+def visitaexistsi(cod):
+    encontrado=False
+    for visita in LISTA_VISITAS:
+        if visita[0] == cod:
+            return True
+    else:
+        return False
+
+
+def Modvisita():
+    cod = input("Ingrese el ID de la visita:")
+    if visitaexistsi(cod) == True:
+        iddanim = input("Ingrese el ID de la mascota:")
+        if getMascotavisitamod(iddanim) == True:
+            codN = input("Ingrese la forma de pago que quiere modificar. Recuerde que las opciones son 01 contado | 02 credito:")
+            if codN == '01' or codN == '02':
+               numeronec=Buscainlista(cod)
+               LISTA_VISITAS[numeronec]=LISTA_VISITAS[numeronec][:5]
+               LISTA_VISITAS[numeronec]=LISTA_VISITAS[numeronec]+[codN]
+               print( LISTA_VISITAS)
+               return LISTA_VISITAS
+            else:
+                print("No ingreso ni 01 o 02, ingrese la informacion de nuevo:")
+                Modvisita()
+        else:
+             print("Codigo de mascota no existe, ingrese la informacion de nuevo")
+             Modvisita()
+    else:
+        print("Codigo de visita no existe, ingrese la informacion de nuevo")
+        Modvisita()
+
+
+
+def Buscainlista(codanim):
+    f=0
+    i=0
+    cargarVisitas()
+    while i<len(LISTA_VISITAS)-1:
+        if LISTA_VISITAS[i][0]==codanim:
+            return i
+        i=i+1
+    return i
