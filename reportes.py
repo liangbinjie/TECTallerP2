@@ -23,6 +23,12 @@ def getListaCiudadesPais():
     reporte.write(salida)
 
 
+def getListaClientes():
+    reporte = open("reportes/reporteClientes.txt", "a")
+    for clientes in LISTA_CLIENTES:
+        if clientes[0] != 1:
+            reporte.write(f"ID: {clientes[0]} | Nombre: {clientes[1]} | Direccion: {clientes[2]} | Pais: {clientes[3]} | Ciudad: {clientes[4]} | Telefono: {clientes[5]} | Fecha: {clientes[6]}-{clientes[7]}-{clientes[8]} | Descuento: {clientes[9]} | Saldo: {clientes[10]}")
+
 def menuReportes():
     running = True
 
@@ -33,7 +39,7 @@ def menuReportes():
         elif opcion == "2":
             getListaCiudadesPais()
         elif opcion == "3":
-            pass
+            getListaClientes()
             
         elif opcion == "4":
             pass
