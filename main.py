@@ -8,9 +8,8 @@ from mascota import cargarMascotas
 from visitas import cargarVisitas
 from tratamiento import cargarTratamientos
 from medicacion import cargarMed
-
-# from modificar import menuModificar
-# from eliminar import menuEliminar
+from modificar import menuModificar
+from eliminar import menuEliminar
 
 cargarPaises()
 cargarCiudad()
@@ -37,13 +36,13 @@ def main():
             system('cls')
             menuBusqueda()
 
-        # elif respuesta == "3":
-        #     system("cls")
-        #     menuEliminar()
+        elif respuesta == "3":
+            system("cls")
+            menuEliminar()
 
-        # elif respuesta == "4":
-        #     system("cls")
-        #     menuModificar()
+        elif respuesta == "4":
+            system("cls")
+            menuModificar()
 
         elif respuesta == "Q":
             running = False
