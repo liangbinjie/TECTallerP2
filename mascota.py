@@ -27,6 +27,14 @@ def getMascotavisita(idMascota):
     print("No se encontro la mascota")
     return False
 
+def getMascotavisitamod(idMascota):
+    cargarMascotas()
+    for mascota in LISTA_MASCOTAS:
+        if mascota[1] == idMascota:
+            return True
+    print("No se encontro la mascota")
+    return False
+
 # Funcion para obtener las mascotas asociadas al cliente
 def getMascotasCliente(idCliente):
     mascotasCliente = []
