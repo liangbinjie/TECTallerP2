@@ -1,0 +1,2 @@
+** LISTA DE MASCOTAS PARA CLIENTE ID: 12345 **
+ID: 23 | Nombre: Nana | Tipo: Canino | Raza: chigugua | Fecha Nacimiento: 23-02-69 | Sexo: hembra | Color: blanco | Castrado: si | Fecha Ultima visita: 23-04-22

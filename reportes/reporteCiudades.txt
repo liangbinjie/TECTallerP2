@@ -1,0 +1,4 @@
+** Codigo pais: 12 **
+Codigo ciudad: 123 | Nombre: Heredia
+Codigo ciudad: 123 | Nombre: Mata de Platano
+Codigo ciudad: 456 | Nombre: Tres Rios

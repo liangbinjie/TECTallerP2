@@ -10,7 +10,12 @@ def cargarClientes():
         listaClientes.append(linea.replace("\n", "").split(';'))
 
     for cliente in listaClientes:
-        if cliente not in LISTA_CLIENTES:
+        bandera = 0
+        for elemento in LISTA_CLIENTES:
+            if cliente[0] == elemento[0]:
+                bandera = 1
+
+        if bandera == 0:
             LISTA_CLIENTES.append(cliente)
 
 
@@ -20,6 +25,7 @@ def getCliente(idCliente):
         if cliente[0] == idCliente:
             return cliente
     print("No se encontro el cliente")
+    # print(LISTA_CLIENTES)
     return False
 
 # Funcion para agregar un cliente

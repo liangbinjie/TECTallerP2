@@ -18,8 +18,8 @@ def menuEliminar():
             # modificarCiudad()
         elif opcion == "3":
             deleteCliente(getCliente(input("Ingrese el id del cliente a eliminar: ")))
-            verClientesEliminados()
-            input()
+            # verClientesEliminados()
+            # input()
         elif opcion == "4":
             deleteMascota()
         elif opcion == "5":

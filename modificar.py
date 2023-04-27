@@ -5,6 +5,8 @@ from visitas import Modvisita
 from os import system
 from tratamiento import modTratamientos
 from medicacion import modMedicamento
+from cliente import modificarCliente, getCliente
+from mascota import modificarMascota, getMascota
 
 def menuModificar():
     running = True
@@ -18,11 +20,9 @@ def menuModificar():
             idCiudad = input("Ingrese el id de la ciudad: ")
             modificarCiudad(getCiudad(idCiudad))
         elif opcion == "3":
-            pass
-            # addCliente()
+            modificarCliente(getCliente(input("Ingrese el id del cliente: ")))
         elif opcion == "4":
-            pass
-            # addMascota()
+            modificarMascota(getMascota(input("Ingrese el id de la mascota")))
         elif opcion == "5":
             Modvisita()
         elif opcion == "6":
