@@ -1,5 +1,5 @@
 
-from variables import TABLA_MEDICACION,LISTA_MEDICACION,fechaV
+from variables import TABLA_MEDICACION,LISTA_MEDICACION,fechaV,REPORTESMEDICAMENTOS
 from mascota import getMascotavisitamod,getMascota
 from tratamiento import getTratamientos
 
@@ -132,3 +132,17 @@ def modMedicamento():
     else:
         print("Codigo de medicacion no valido, ingrese la informacion de nuevo:")
         modMedicamento()
+
+def repultmed():
+    cod = input("Ingrese el codigo de la mascota para reportar su ultima medicacion:")
+    reportes = open ("reportes/reportesmedicamentos.txt","a")
+    i=len(LISTA_MEDICACION)-1
+    while i>=0:
+        if LISTA_MEDICACION[i][0]==cod:
+            reportes.write(f"Ultima medicacion de mascota codigo {cod}: {LISTA_MEDICACION[i][5]}\n")
+            return 
+        i=i-1
+    print("No se encontro el codigo de la mascota")
+
+
+    
