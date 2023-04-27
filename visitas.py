@@ -83,8 +83,6 @@ def Modvisita():
                numeronec=Buscainlista(cod)
                LISTA_VISITAS[numeronec]=LISTA_VISITAS[numeronec][:5]
                LISTA_VISITAS[numeronec]=LISTA_VISITAS[numeronec]+[codN]
-               print( LISTA_VISITAS)
-               return LISTA_VISITAS
             else:
                 print("No ingreso ni 01 o 02, ingrese la informacion de nuevo:")
                 Modvisita()
@@ -119,3 +117,14 @@ def repvisitas():
         i=i-1
     if bandera==0:
         print("No se encontro el codigo de la mascota")
+
+
+def ultvisita(cod):
+    i = len(LISTA_VISITAS)-1
+    fecha=[]
+    while i>=0:
+        if LISTA_VISITAS[i][0]==cod:
+            return f"{LISTA_VISITAS[i][2]}-{LISTA_VISITAS[i][3]}-{LISTA_VISITAS[i][4]}"
+            
+        i=i-1
+

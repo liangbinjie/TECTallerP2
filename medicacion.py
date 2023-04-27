@@ -104,7 +104,6 @@ def eliminaMed():
         i=medicamentoi(codmed)
         LISTA_MEDICACION.remove(LISTA_MEDICACION[i])
 
-        print(LISTA_MEDICACION)
     else:
         print("Codigo de medicacion no existe, ingrese la informacion de nuevo")
         eliminaMed()
@@ -125,7 +124,6 @@ def modMedicamento():
             i=medicamentoi(codmed)
             LISTA_MEDICACION[i]=LISTA_MEDICACION[i][:5]
             LISTA_MEDICACION[i]=LISTA_MEDICACION[i]+[nom,precio,cant,preciototal]
-            print(LISTA_MEDICACION)
         else:
             print("ID de animal no valido, ingrese la informacion de nuevo:")
             modMedicamento()
