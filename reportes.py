@@ -4,8 +4,10 @@ from os import system
 from visitas import repvisitas
 from medicacion import repultmed
 from tratamiento import reptrat
+from cliente import getCliente
+
 def getListaPaises():
-    reporte = open("reportes/reportePais.txt", "a")
+    reporte = open("reportes/reportePais.txt", "w")
     for pais in LISTA_PAISES:
         print(pais)
         reporte.write(f"Codigo: {pais[0]} | Nombre: {pais[1]}\n")
@@ -22,15 +24,35 @@ def getListaCiudadesPais():
             print(f"\nCodigo ciudad: {ciudad[1]} | Nombre: {ciudad[2]}")
             salida += f"\nCodigo ciudad: {ciudad[1]} | Nombre: {ciudad[2]}"
     
-    reporte = open("reportes/reporteCiudades.txt", "a")
+    reporte = open("reportes/reporteCiudades.txt", "w")
     reporte.write(salida)
 
 
 def getListaClientes():
-    reporte = open("reportes/reporteClientes.txt", "a")
+    reporte = open("reportes/reporteClientes.txt", "w")
     for clientes in LISTA_CLIENTES:
         if clientes[0] != 1:
-            reporte.write(f"ID: {clientes[0]} | Nombre: {clientes[1]} | Direccion: {clientes[2]} | Pais: {clientes[3]} | Ciudad: {clientes[4]} | Telefono: {clientes[5]} | Fecha: {clientes[6]}-{clientes[7]}-{clientes[8]} | Descuento: {clientes[9]} | Saldo: {clientes[10]}")
+            reporte.write(f"ID: {clientes[0]} | Nombre: {clientes[1]} | Direccion: {clientes[2]} | Pais: {clientes[3]} | Ciudad: {clientes[4]} | Telefono: {clientes[5]} | Fecha: {clientes[6]}-{clientes[7]}-{clientes[8]} | Descuento: {clientes[9]} | Saldo: {clientes[10]}\n")
+
+def getListaMascotasCliente():
+    cliente = getCliente(input("Ingrese el id del cliente: "))
+    if cliente != False:
+        bandera = 0
+        salida = f"** LISTA DE MASCOTAS PARA CLIENTE ID: {cliente[0]} **\n"
+        for mascotas in LISTA_MASCOTAS:
+            if mascotas[0] == cliente[0]:
+                bandera = 1
+                salida += f"ID: {mascotas[1]} | Nombre: {mascotas[2]} | Tipo: {mascotas[3]} | Raza: {mascotas[4]} | Fecha Nacimiento: {mascotas[5]}-{mascotas[6]}-{mascotas[7]} | Sexo: {mascotas[8]} | Color: {mascotas[9]} | Castrado: {mascotas[10]} | Fecha Ultima visita: {mascotas[11]}-{mascotas[12]}-{mascotas[13]}\n"
+        
+        if bandera == 0:
+            print("Cliente no tiene mascotas")
+        else:
+            reporte = open("reportes/reporteMascotas.txt", "w")
+            reporte.write(salida)
+    else:
+        print("No se encontro el cliente")
+
+
 
 def menuReportes():
     running = True
@@ -45,7 +67,7 @@ def menuReportes():
             getListaClientes()
             
         elif opcion == "4":
-            pass
+            getListaMascotasCliente()
         elif opcion == "5":
            repvisitas()
         elif opcion == "6":

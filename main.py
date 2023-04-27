@@ -26,7 +26,7 @@ def main():
 
     while running:
         system('cls')
-        print("Que necesitas realizar?\n[1]Insercion\n[2]Busqueda\n[3]Eliminar\n[4]Modificar\n[5]Reportes\n")
+        print("Que necesitas realizar?\n[1]Insercion\n[2]Busqueda\n[3]Eliminar\n[4]Modificar\n[5]Reportes\n[Q]Salir")
         respuesta = input("> ")
 
         if respuesta == "1":

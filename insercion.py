@@ -10,7 +10,7 @@ def menuInsercion():
     running = True
 
     while running:
-        opcion = input("Has ingresado al modulo de insercion, que deseas agregar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Visitas\n[6]Tratamientos\n[7]Medicacion\n>")
+        opcion = input("Has ingresado al modulo de insercion, que deseas agregar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Visitas\n[6]Tratamientos\n[7]Medicacion\n[Q]Salir\n>")
         if opcion == "1":
             addPais()
         elif opcion == "2":
