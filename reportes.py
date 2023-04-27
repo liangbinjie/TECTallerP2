@@ -1,6 +1,9 @@
 from variables import *
 from pais import paisExist
-
+from os import system
+from visitas import repvisitas
+from medicacion import repultmed
+from tratamiento import reptrat
 def getListaPaises():
     reporte = open("reportes/reportePais.txt", "a")
     for pais in LISTA_PAISES:
@@ -33,7 +36,7 @@ def menuReportes():
     running = True
 
     while running:
-        opcion = input("Has ingresado al modulo de eliminar, que deseas eliminar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Medicacion\n> ")
+        opcion = input("Has ingresado al modulo de reportes, que deseas reportar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Visitas\n[6]Tratamientos\n[7]Medicacion\n> ")
         if opcion == "1":
             getListaPaises()
         elif opcion == "2":
@@ -44,7 +47,11 @@ def menuReportes():
         elif opcion == "4":
             pass
         elif opcion == "5":
-           pass
+           repvisitas()
+        elif opcion == "6":
+            reptrat()
+        elif opcion == "7":
+            repultmed()
         elif opcion == "Q":
             running = False
         else:
