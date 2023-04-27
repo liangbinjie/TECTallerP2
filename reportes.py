@@ -53,18 +53,87 @@ def getListaMascotasCliente():
         print("No se encontro el cliente")
 
 
+def clienteMasSaldo():
+    mayor = 0
+    for cliente in LISTA_CLIENTES:
+        if int(cliente[10]) > mayor:
+            mayor = int(cliente[10])
+            infoCliente = cliente
+    
+    archivo = open("reportes/clienteMasSaldo.txt", "w")
+    archivo.write(f"El cliente con mas saldo es {infoCliente[1]} con id: {infoCliente[0]}, con saldo de ${mayor}")
+    print("reporte generado")
+
+def clientesMasDescuento():
+    mayor = 0
+    for cliente in LISTA_CLIENTES:
+        if int(cliente[9]) > mayor:
+            mayor = int(cliente[9])
+    
+    archivo = open("reportes/clienteMasDescuento.txt", "w")
+    for cliente in LISTA_CLIENTES:
+        if int(cliente[9]) == mayor:
+            archivo.write("Clientes con mayor descuento\n")
+            archivo.write(f"Nombre: {cliente[1]} con id: {cliente[0]}, con descuento de {mayor}%\n")
+    print("reporte generado")
+
+def clientesCredito():
+    listaMascotas = []
+    for visita in LISTA_VISITAS:
+        if visita[6] == "02":
+            listaMascotas.append(visita[1])
+    
+    listaClientes = []
+    for mascotas in listaMascotas:
+        for mascota in LISTA_MASCOTAS:
+            if mascotas == mascota[1]:
+                if mascota[0] not in listaClientes:
+                    listaClientes.append(mascota[0])
+    
+    reporte = open('reportes/reporteCredito.txt', "w")
+    reporte.write("Lista de clientes de creditos\n")
+    for cliente in listaClientes:
+        reporte.write(f"ID: {cliente}\n")
+    print(listaClientes)
+    print("Reporte generado")
+
+
+def tratamientoMasUtilizado():
+    mayor = 0
+    for medicacion in LISTA_MEDICACION:
+        if int(medicacion[7]) > mayor:
+            mayor = int(medicacion[7])
+            medicina = medicacion[5]
+
+    print(f"ID de tratamiento mas utilizado: {medicina}")
+    reporte = open("reportes/tratamientoMasUtilizado.txt", "w")
+    reporte.write("Tratamiento mas utilizado\n")
+    reporte.write(f"ID de tratamiento mas utilizado: {medicina}")
+    print("Reporte generado")
+    
 
 def menuReportes():
     running = True
 
     while running:
-        opcion = input("Has ingresado al modulo de reportes, que deseas reportar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Visitas\n[6]Tratamientos\n[7]Medicacion\n> ")
+        opcion = input("Has ingresado al modulo de reportes, que deseas reportar\n[1]Pais\n[2]Ciudad\n[3]Cliente\n[4]Mascotas\n[5]Visitas\n[6]Tratamientos\n[7]Medicacion\n[8]Tratamiento mas utilizado\n> ")
         if opcion == "1":
             getListaPaises()
         elif opcion == "2":
             getListaCiudadesPais()
         elif opcion == "3":
-            getListaClientes()
+            opcion2 = input("[1]Obtener lista de clientes\n[2]Clientes con mas saldo\n[3]Clientes de creditos\n[4]Clientes con mas descuentos\n> ")
+            if opcion2 == "1":
+                getListaClientes()
+            elif opcion2 == "2":
+                clienteMasSaldo()
+
+            elif opcion == "3":
+                clientesCredito()
+
+            elif opcion == "4":
+                clientesMasDescuento()
+            
             
         elif opcion == "4":
             getListaMascotasCliente()
@@ -74,6 +143,8 @@ def menuReportes():
             reptrat()
         elif opcion == "7":
             repultmed()
+        elif opcion == "8":
+            tratamientoMasUtilizado()
         elif opcion == "Q":
             running = False
         else:
