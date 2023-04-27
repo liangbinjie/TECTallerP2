@@ -73,6 +73,13 @@ def modTratamientos():
         print("Codigo de tratamiento incorrecto, ingrese los datos de nuevo:")
         modTratamientos()
 
+def reptrat():
+    reportes = open("reportes/reportestratamientos.txt","a")
+    reportes.write(f"La lista de tratamientos es:\n")
+    for tratamiento in LISTA_TRATAMIENTOS:
+        reportes.write(f"{tratamiento}\n")
+
+
 
 
         
