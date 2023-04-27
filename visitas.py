@@ -106,3 +106,16 @@ def Buscainlista(codanim):
             return i
         i=i+1
     return i
+
+def repvisitas():
+    cod = input("Ingrese el codigo de la mascota para reportar sus visitas:")
+    reportes = open ("reportes/reportesvisitas.txt","a")
+    i=len(LISTA_VISITAS)-1
+    bandera=0
+    while i>=0:
+        if LISTA_VISITAS[i][1]==cod:
+            bandera=bandera+1
+            reportes.write(f"Hubo una visita de la mascota codigo {cod} en: {LISTA_VISITAS[i]}\n")
+        i=i-1
+    if bandera==0:
+        print("No se encontro el codigo de la mascota")
