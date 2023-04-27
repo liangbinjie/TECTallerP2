@@ -6,6 +6,10 @@ TABLA_VISITAS = "database/Visitas.txt"
 TABLA_TRATAMIENTOS = "database/Tratamiento.txt"
 TABLA_MEDICACION = "database/Medicacion.txt"
 
+REPORTESVISITAS = "database/reportes/reportesvisitas.txt"
+REPORTESTRATAMIENTOS = "database/reportes/reportestratamientos.txt"
+REPORTESMEDICAMENTOS = "database/reportes/reportesmedicamentos.txt"
+
 LISTA_PAISES = []
 LISTA_CIUDADES = []
 LISTA_CLIENTES = []
